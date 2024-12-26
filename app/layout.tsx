@@ -1,7 +1,19 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import { ThemeProvider } from "@/components/theme-provider";
+import {
+  Home,
+  TrendingUp,
+  Clock,
+  Heart,
+  Search,
+  History,
+  Video,
+} from "lucide-react";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
+import Image from "next/image";
+import Link from "next/link";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -23,11 +35,120 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="grid md:grid-cols-[auto,1fr]">
+            {/* Sidebar */}
+            <aside className="hidden  sticky top-0 h-screen md:flex flex-col w-12 hover:w-40 transition-all duration-100 bg-neutral-100 dark:bg-neutral-900 px-2 hover:z-10">
+              {/* Logo Section */}
+              <div className="mt-2 pb-2 flex items-center  p-1 border-b border-neutral-200 dark:border-neutral-700">
+                <Image src="/logo.png" width={20} height={20} alt="logo" />
+                <span className="ml-3 whitespace-nowrap overflow-hidden ">
+                  Home
+                </span>
+              </div>
+
+              <nav className="space-y-2 flex-1 pt-1">
+                <Link
+                  href="/"
+                  className="flex items-center p-1  hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded  group"
+                >
+                  <div className="min-w-[20px] flex justify-center">
+                    <Home className="w-5 h-5" />
+                  </div>
+                  <span className="ml-3 whitespace-nowrap overflow-hidden">
+                    Home
+                  </span>
+                </Link>
+                <Link
+                  href="/"
+                  className="flex items-center p-1  hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded  group"
+                >
+                  <div className="min-w-[20px] flex justify-center">
+                    <Search className="w-5 h-5" />
+                  </div>
+                  <span className="ml-3 whitespace-nowrap overflow-hidden">
+                    Search
+                  </span>
+                </Link>
+                <Link
+                  href="/settings"
+                  className="flex items-center p-1 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded group"
+                >
+                  <div className="min-w-[20px] flex justify-center">
+                    <Heart className="w-6 h-6" />
+                  </div>
+                  <span className="ml-3 whitespace-nowrap overflow-hidden">
+                    Liked
+                  </span>
+                </Link>
+                <Link
+                  href="/settings"
+                  className="flex items-center p-1 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded group"
+                >
+                  <div className="min-w-[20px] flex justify-center">
+                    <Video className="w-5 h-5" />
+                  </div>
+                  <span className="ml-3 whitespace-nowrap overflow-hidden">
+                    Desi Girls
+                  </span>
+                </Link>
+                <Link
+                  href="/help"
+                  className="flex items-center p-1 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded group"
+                >
+                  <div className="min-w-[20px] flex justify-center">
+                    <TrendingUp className="w-5 h-5" />
+                  </div>
+                  <span className="ml-3 whitespace-nowrap overflow-hidden">
+                    Trending
+                  </span>
+                </Link>
+
+                <Link
+                  href="/users"
+                  className="flex items-center p-1 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded group"
+                >
+                  <div className="min-w-[20px] flex justify-center">
+                    <Clock className="w-5 h-5" />
+                  </div>
+                  <span className="ml-3 whitespace-nowrap overflow-hidden">
+                    Watch Later
+                  </span>
+                </Link>
+
+                <Link
+                  href="/users"
+                  className="flex items-center p-1 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded group"
+                >
+                  <div className="min-w-[20px] flex justify-center">
+                    <History className="w-5 h-5" />
+                  </div>
+                  <span className="ml-3 whitespace-nowrap overflow-hidden">
+                    Watch History
+                  </span>
+                </Link>
+              </nav>
+
+              <ThemeSwitcher />
+            </aside>
+            {/* Main Content */}
+            <main className="min-h-screen">
+              <div className="w-100 bg-neutral-100 dark:bg-neutral-900 h-12 flex items-center justify-center">
+                This is the header and it is fixed
+              </div>
+              <div className="p-2"> {children}</div>
+            </main>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
