@@ -69,7 +69,7 @@ export default function RootLayout({
                   </span>
                 </Link>
                 <Link
-                  href="/"
+                  href="/search"
                   className="flex items-center p-1  hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded  group"
                 >
                   <div className="min-w-[20px] flex justify-center">

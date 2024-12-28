@@ -68,3 +68,18 @@ export interface Tags {
   updatedAt: Date;
   isEnabled: boolean;
 }
+
+export interface PopularSearchQueriesResult {
+  highlights: any[];
+  highlight: Highlight;
+  document: PopularSearchQueriesDocument;
+  text_match: number;
+  geo_distance_meters: null;
+  vector_distance: null;
+}
+
+export interface PopularSearchQueriesDocument {
+  count: number;
+  id: string;
+  q: string;
+}

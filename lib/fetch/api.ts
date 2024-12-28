@@ -1,4 +1,4 @@
-import { Video } from "../types/types";
+import { PopularSearchQueriesResult, Video } from "../types/types";
 
 export async function getVideo(page: number): Promise<Video[]> {
   const res = await fetch(`${process.env.api_server}/api/video/page/${page}`, {
@@ -21,5 +21,18 @@ export async function getVideoByUID(uid: string): Promise<Video> {
     next: { revalidate: 3600 },
   });
   const data: Video = await res.json();
+  return data;
+}
+
+export async function getPopularSearchQueries(): Promise<
+  PopularSearchQueriesResult[]
+> {
+  const res = await fetch(
+    `${process.env.api_server}/api/search/popular-queries`,
+    {
+      next: { revalidate: 3600 },
+    }
+  );
+  const data: PopularSearchQueriesResult[] = await res.json();
   return data;
 }
