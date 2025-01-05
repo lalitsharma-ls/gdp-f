@@ -83,3 +83,57 @@ export interface PopularSearchQueriesDocument {
   id: string;
   q: string;
 }
+
+export interface SearchResult {
+  highlights: HighlightElement[];
+  highlight: PurpleHighlight;
+  document: Document;
+  text_match: number;
+  geo_distance_meters: null;
+  vector_distance: null;
+}
+
+export interface Document {
+  category: string;
+  create_date: number;
+  id: string;
+  is_embed: boolean;
+  is_enabled: boolean;
+  poster: string;
+  tags: string[];
+  title: string;
+  trend_score: number;
+  uid: string;
+  video_url: string;
+  views: number;
+}
+
+export interface PurpleHighlight {
+  tags?: Title[];
+  title?: Title;
+}
+
+export interface Title {
+  matched_tokens: MatchedTokenEnum[];
+  snippet: string;
+}
+
+export enum MatchedTokenEnum {
+  Ass = "ass",
+  MatchedTokenAss = "Ass",
+}
+
+export interface HighlightElement {
+  field: Field;
+  snippet: null | string;
+  snippets: string[] | null;
+  value: null;
+  values: null;
+  indices: number[] | null;
+  matched_tokens: Array<MatchedTokenEnum[] | MatchedTokenEnum>;
+}
+
+export enum Field {
+  Tags = "tags",
+  Title = "title",
+}

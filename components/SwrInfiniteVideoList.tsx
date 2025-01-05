@@ -9,19 +9,23 @@ import { Loader } from "lucide-react";
 
 interface Props {
   initialVideos: Video[];
+  allowedToLoadMore: boolean;
 }
 
-export default function InfiniteVideoList({ initialVideos }: Props) {
+export default function InfiniteVideoList({
+  initialVideos,
+  allowedToLoadMore,
+}: Props) {
   const { videos, isLoadingMore, hasMore, setSize } =
     useInfiniteScroll(initialVideos);
   const observerTarget = useRef<HTMLDivElement>(null);
 
   const debouncedLoadMore = useCallback(
     debounce(() => {
-      if (hasMore && !isLoadingMore) {
+      if (allowedToLoadMore && hasMore && !isLoadingMore) {
         setSize((size) => size + 1);
       }
-    }, 2000),
+    }, 1000),
     [hasMore, isLoadingMore, setSize]
   );
 

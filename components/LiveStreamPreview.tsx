@@ -29,18 +29,24 @@ export function LiveStreamPreview({ model }: Props) {
   const [isLoading, setIsLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const playerRef = useRef<MediaPlayerInstance>(null);
+  const [shouldPlay, setShouldPlay] = useState(false);
 
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-    setIsLoading(true);
-    setIsPlaying(false);
-    try {
-      const player = playerRef.current;
-      if (player instanceof HTMLVideoElement && !player.paused) {
-        player.pause();
+  const togglePlayback = () => {
+    setShouldPlay(!shouldPlay);
+    if (shouldPlay) {
+      setIsHovering(false);
+      setIsLoading(true);
+      setIsPlaying(false);
+      try {
+        const player = playerRef.current;
+        if (player instanceof HTMLVideoElement && !player.paused) {
+          player.pause();
+        }
+      } catch (error) {
+        console.error("Error toggling playback:", error);
       }
-    } catch (error) {
-      console.error("Error stopping playback:", error);
+    } else {
+      setIsHovering(true);
     }
   };
 
@@ -60,9 +66,12 @@ export function LiveStreamPreview({ model }: Props) {
   return (
     <a
       href={`https://fuckonlive.com/${model.username}`}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={handleMouseLeave}
-      className="block group"
+      onMouseEnter={() => !isHovering && togglePlayback()}
+      onTouchStart={(e) => {
+        e.preventDefault();
+        togglePlayback();
+      }}
+      className="block group cursor-pointer"
     >
       <div className="grid gap-1 group">
         <div className="relative w-28 h-56 lg:w-52 xl:w-52 2xl:w-56 lg:h-28 xl:h-28 2xl:h-32 rounded-lg overflow-hidden">

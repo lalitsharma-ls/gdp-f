@@ -3,7 +3,7 @@ import LiveSkeleton from "@/components/loading/LiveSkeleton";
 import TagsSkeleton from "@/components/loading/TagsSkeleton";
 import VideoCardSkeleton from "@/components/loading/VideoCardSkeleton";
 import TagsList from "@/components/TagsList";
-import VideoList from "@/components/VideoList";
+import TrendingVideoList from "@/components/TrendingVideoList";
 import { Suspense } from "react";
 export const metadata = {
   title: "Desi Porn Videos",
@@ -25,7 +25,7 @@ export default async function Home() {
         <TagsList />
       </Suspense>
       <Suspense fallback={<VideoCardSkeleton />}>
-        <VideoList />
+        <TrendingVideoList />
       </Suspense>
     </div>
   );

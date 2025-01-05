@@ -3,6 +3,7 @@ import React from "react";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 import { Button } from "./ui/button";
 import { toTitleCase } from "@/lib/utils";
+import Link from "next/link";
 const TagsList = async () => {
   try {
     const tags = await getTags();
@@ -17,12 +18,14 @@ const TagsList = async () => {
       <ScrollArea className="w-full whitespace-nowrap">
         <div className="flex space-x-2 justify-center items-center">
           {tags.map((tag, index) => (
-            <Button
-              key={index}
-              className="rounded-full mb-3  bg-neutral-200 dark:bg-neutral-800 hover:bg-gray-400 hover:text-white text-gray-600 dark:text-white text-sm "
-            >
-              {toTitleCase(tag)}
-            </Button>
+            <Link key={index} href={`/tag/${tag}`}>
+              <Button
+                key={index}
+                className="rounded-full mb-3  bg-neutral-200 dark:bg-neutral-800 hover:bg-gray-400 hover:text-white text-gray-600 dark:text-white text-sm "
+              >
+                {toTitleCase(tag)}
+              </Button>
+            </Link>
           ))}
         </div>
         <ScrollBar orientation="horizontal" />

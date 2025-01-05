@@ -6,7 +6,7 @@ const TagsSkeleton = () => {
     <ScrollArea>
       <div className="flex gap-1  pb-2">
         {Array.from({ length: 28 }).map((_, index) => (
-          <Skeleton key={index} className="w-[100px] h-[26px] rounded-full" />
+          <Skeleton key={index} className="w-[140px] h-[34px] rounded-full" />
         ))}
       </div>
 
