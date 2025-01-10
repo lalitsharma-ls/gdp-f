@@ -1,12 +1,12 @@
 import { getSuggestedVideos } from "@/lib/fetch/api";
 import { SearchResult } from "@/lib/types/types";
-import React from "react";
+import React, { use } from "react";
 import HorizontalVideoCard from "./HorizontalVideoCard";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 import { toTitleCase } from "@/lib/utils";
 
-const SuggestedVideos = async () => {
-  const data: SearchResult[] = await getSuggestedVideos("ass,boobs", 20);
+const SuggestedVideos = () => {
+  const data: SearchResult[] = use(getSuggestedVideos("ass,boobs", 20));
 
   return (
     <ScrollArea className="w-full whitespace-nowrap">

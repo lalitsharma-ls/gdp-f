@@ -1,12 +1,12 @@
 import { getLeastWatchedVideos } from "@/lib/fetch/api";
 import { SearchResult } from "@/lib/types/types";
-import React from "react";
+import React, { use } from "react";
 import HorizontalVideoCard from "./HorizontalVideoCard";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 import { toTitleCase } from "@/lib/utils";
 
-const LeastWatchedVideos = async () => {
-  const data: SearchResult[] = await getLeastWatchedVideos(20);
+const LeastWatchedVideos = () => {
+  const data: SearchResult[] = use(getLeastWatchedVideos(20));
 
   return (
     <ScrollArea className="w-full whitespace-nowrap">

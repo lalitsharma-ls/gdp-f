@@ -1,21 +1,16 @@
-import { getRandomVideos } from "@/lib/fetch/api";
 import { SearchResult } from "@/lib/types/types";
 import React from "react";
 import RecommendationVideoCard from "./RecommendationVideoCard";
 import { toTitleCase } from "@/lib/utils";
 
 interface VideoRecommendationProps {
-  tags: string;
-  limit: number;
+  data: SearchResult[];
   videoId: string;
 }
 const VideoRecommendation = async ({
-  tags,
-  limit,
+  data,
   videoId,
 }: VideoRecommendationProps) => {
-  const data: SearchResult[] = await getRandomVideos(limit);
-
   function shuffleArray(array: SearchResult[]) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));

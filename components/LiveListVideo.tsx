@@ -1,9 +1,7 @@
+import { use } from "react";
 import LiveListPage from "./LiveListPage";
 import LiveListSearchPage from "./LiveListSearchPage";
 import LiveListVideoPage from "./LiveListVideoPage";
-import { LiveStreamPreview } from "./LiveStreamPreview";
-import { ScrollArea, ScrollBar } from "./ui/scroll-area";
-
 interface LiveListPageProps {
   pageType: "video" | "search" | "page";
 }
@@ -12,7 +10,7 @@ async function getLiveStreams() {
   const res = await fetch(
     "https://go.rmhfrtnd.com/api/models?gender=female&profileEthnicity=indian&status=public&modelsCountry=in&limit=1000",
     {
-      next: { revalidate: 2 },
+      cache: "no-cache",
       headers: {
         "Content-Type": "application/json",
       },
@@ -24,8 +22,8 @@ async function getLiveStreams() {
   return res.json();
 }
 
-export default async function LiveListVideo({ pageType }: LiveListPageProps) {
-  const data = await getLiveStreams();
+export default function LiveListVideo({ pageType }: LiveListPageProps) {
+  const data = use(getLiveStreams());
 
   return (
     <>

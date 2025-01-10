@@ -16,7 +16,7 @@ const LiveList = async () => {
   try {
     const res = await fetch(
       "https://go.rmhfrtnd.com/api/models?gender=female&profileEthnicity=indian&status=public&modelsCountry=in&limit=200",
-      { next: { revalidate: 2 } }
+      { next: { revalidate: 30 } }
     );
 
     if (!res.ok) {

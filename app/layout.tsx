@@ -18,6 +18,7 @@ import Link from "next/link";
 import MobileNav from "@/components/MobileNav";
 import CookieConsent from "@/components/CookieConsent";
 import Script from "next/script";
+import AdComponent from "@/components/AdComponent";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -47,7 +48,7 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
@@ -55,7 +56,7 @@ export default function RootLayout({
             <MobileNav />
             <CookieConsent />
             {/* Sidebar */}
-            <aside className="hidden  sticky top-0 h-screen md:flex flex-col w-12 hover:w-40 transition-all duration-100 bg-neutral-100 dark:bg-neutral-900 px-2 hover:z-10">
+            <aside className="hidden  sticky top-0 h-screen md:flex flex-col w-12 hover:w-40 transition-all duration-200 bg-neutral-100 dark:bg-neutral-900 px-2 hover:z-10">
               {/* Logo Section */}
               <div className="mt-2 pb-2 flex items-center  p-1 border-b border-neutral-200 dark:border-neutral-700">
                 <Image
@@ -177,30 +178,8 @@ export default function RootLayout({
             </main>
           </div>
         </ThemeProvider>
+        <AdComponent />
       </body>
-      <Script
-        id="exoclick-config"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-              var ad_idzone = "5361010",
-              ad_popup_fallback = false,
-              ad_popup_force = false,
-              ad_chrome_enabled = true,
-              ad_new_tab = false,
-              ad_frequency_period = 60,
-              ad_frequency_count = 2,
-              ad_trigger_method = 1,
-              ad_trigger_delay = 0,
-              ad_capping_enabled = true;
-            `,
-        }}
-      />
-      <Script
-        id="exoclick-popunder"
-        strategy="afterInteractive"
-        src="https://a.pemsrv.com/popunder1000.js"
-      />
     </html>
   );
 }

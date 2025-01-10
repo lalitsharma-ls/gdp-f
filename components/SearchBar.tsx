@@ -45,8 +45,8 @@ const SearchBar = ({ defaultValue }: SearchBarProps) => {
           onChange={handleChange}
           placeholder="Search videos..."
         />
-        <span className="text-[4rem] font-extrabold uppercase shrink-0">t</span>
-        <span className="text-[4rem] font-extrabold uppercase shrink-0">r</span>
+        <span className="text-[4rem] font-extrabold uppercase shrink-0">R</span>
+        <span className="text-[4rem] font-extrabold uppercase shrink-0">N</span>
       </div>
     </div>
   );

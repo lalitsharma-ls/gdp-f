@@ -1,8 +1,5 @@
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import RecommendationVideoCard from "@/components/RecommendationVideoCard";
-import TagsList from "@/components/TagsList";
-import { getVideoByUID } from "@/lib/fetch/api";
-import { Video } from "@/lib/types/types";
+import { getRandomVideos, getVideoByUID } from "@/lib/fetch/api";
+import { SearchResult, Video } from "@/lib/types/types";
 import { Skeleton } from "@/components/ui/skeleton";
 import LiveListVideo from "@/components/LiveListVideo";
 import { TrendingUp, Clock, Heart, Flag } from "lucide-react";
@@ -12,6 +9,8 @@ import { Suspense } from "react";
 import RecommendationVideoCardSkeleton from "@/components/loading/RecommendationVideoCardSkeleton";
 import VideoPageLiveCardSkeleton from "@/components/loading/VideoPageLiveCardSkeleton";
 import { Metadata } from "next";
+
+export const revalidate = 2678400;
 
 export async function generateMetadata({
   params,
@@ -72,6 +71,7 @@ interface VideoPageProps {
 export default async function VideoPage(params: VideoPageProps) {
   const { uid } = await params.params;
   const video: Video = await getVideoByUID(uid);
+  const recommendations: SearchResult[] = await getRandomVideos(100, uid);
 
   return (
     <>
@@ -128,13 +128,7 @@ export default async function VideoPage(params: VideoPageProps) {
           <div className="space-y-2">
             <h2 className="text-lg font-semibold">Similar Videos</h2>
             <div className="flex flex-col gap-4">
-              <Suspense fallback={<RecommendationVideoCardSkeleton />}>
-                <VideoRecommendation
-                  videoId={video.uid}
-                  tags={video.tags.join(",")}
-                  limit={200}
-                />
-              </Suspense>
+              <VideoRecommendation data={recommendations} videoId={video.uid} />
             </div>
           </div>
         </div>

@@ -1,12 +1,12 @@
 import { getMostPopularVideos } from "@/lib/fetch/api";
 import { SearchResult } from "@/lib/types/types";
-import React from "react";
+import React, { use } from "react";
 import HorizontalVideoCard from "./HorizontalVideoCard";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 import { toTitleCase } from "@/lib/utils";
 
-const MostPopularVideos = async () => {
-  const data: SearchResult[] = await getMostPopularVideos();
+const MostPopularVideos = () => {
+  const data: SearchResult[] = use(getMostPopularVideos());
 
   return (
     <ScrollArea className="w-full whitespace-nowrap">

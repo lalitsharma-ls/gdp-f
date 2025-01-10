@@ -1,14 +1,14 @@
 import { getPopularSearchQueries } from "@/lib/fetch/api";
 import { PopularSearchQueriesResult } from "@/lib/types/types";
 import { ScrollArea } from "./ui/scroll-area";
-import React from "react";
+import React, { use } from "react";
 import { ScrollBar } from "./ui/scroll-area";
 import SearchQuery from "./SearchQuery";
 interface PopularSearchQueriesProps {
   limit?: number;
 }
-const PopularSearchQueries = async ({ limit }: PopularSearchQueriesProps) => {
-  const data: PopularSearchQueriesResult[] = await getPopularSearchQueries();
+const PopularSearchQueries = ({ limit }: PopularSearchQueriesProps) => {
+  const data: PopularSearchQueriesResult[] = use(getPopularSearchQueries());
   const limitedData = limit ? data.slice(0, limit) : data;
   return (
     <div className="flex flex-col gap-2  h-full">
