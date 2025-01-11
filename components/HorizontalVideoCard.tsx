@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Image from "next/image";
+import { Image } from "@unpic/react";
 import Link from "next/link";
 interface VideoCardProps {
   thumbnail: string;
@@ -11,7 +11,7 @@ interface VideoCardProps {
   uid: string;
 }
 
-const VideoCard = ({
+const HorizontalVideoCard = ({
   thumbnail,
   title,
   category,
@@ -26,12 +26,13 @@ const VideoCard = ({
           <Image
             src={thumbnail}
             alt={title}
-            fill
+            layout="constrained"
+            width={1280}
+            height={720}
+            breakpoints={[640, 960, 1280]}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 shadow-2xl"
-            placeholder="blur"
-            blurDataURL={thumbnail_placeholder}
+            background={thumbnail_placeholder}
             priority={false}
-            loading="lazy"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.src =
@@ -54,4 +55,4 @@ const VideoCard = ({
   );
 };
 
-export default VideoCard;
+export default HorizontalVideoCard;

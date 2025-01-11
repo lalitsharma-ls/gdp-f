@@ -17,6 +17,9 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.1.1
         version: 1.1.1(@types/react@19.0.1)(react@19.0.0)
+      '@unpic/react':
+        specifier: ^0.1.15
+        version: 0.1.15(next@15.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@vidstack/react':
         specifier: ^1.12.12
         version: 1.12.12(@types/react@19.0.1)(react@19.0.0)
@@ -431,6 +434,19 @@ packages:
 
   '@types/react@19.0.1':
     resolution: {integrity: sha512-YW6614BDhqbpR5KtUYzTA+zlA7nayzJRA9ljz9CQoxthR0sDisYZLuvSMsil36t4EH/uAt8T52Xb4sVw17G+SQ==}
+
+  '@unpic/core@0.1.0':
+    resolution: {integrity: sha512-Xw6BNChpV1klga8Qe/Y4slkohMl4GLmsQCEOxx+yRrm7cMzT6covLvUMVP606YTtIFpJauh0fSZ+N2A03y80iA==}
+
+  '@unpic/react@0.1.15':
+    resolution: {integrity: sha512-Mr5cC96O1AZNRDfgDtL3VChr3xferCHLEzkj4Xg6XekdHltI/FHm9LPKHECE1V/bUn2qmJXoYOSmCB+4QDhIJg==}
+    peerDependencies:
+      next: ^13.0.0 || ^14.0.0 || ^15.0.0
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      next:
+        optional: true
 
   '@vidstack/react@1.12.12':
     resolution: {integrity: sha512-rEwCkZdp/K0FopUU76lgYJqzOZa3AGM2FumQnTPPSCP9jwShYReY9mXgl4/UP5CH3v7MkaVl5ZT67rhfjPxx9Q==}
@@ -955,6 +971,9 @@ packages:
   undici-types@6.19.8:
     resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
 
+  unpic@3.22.0:
+    resolution: {integrity: sha512-NFhB8HgHHWkNzTxwWg6KHx8+3RZnhWFm4Axdqp9iI176iY3wskzfP16NRSJ2SSTfXzyK4W6GsBqs8iOOdvOB3g==}
+
   use-sync-external-store@1.4.0:
     resolution: {integrity: sha512-9WXSPC5fMv61vaupRkCKCxsPxBocVnwakBEkMIHHpkTTg6icbJtg6jzgtLDm4bl3cSHAca52rYWih0k4K3PfHw==}
     peerDependencies:
@@ -1257,6 +1276,18 @@ snapshots:
   '@types/react@19.0.1':
     dependencies:
       csstype: 3.1.3
+
+  '@unpic/core@0.1.0':
+    dependencies:
+      unpic: 3.22.0
+
+  '@unpic/react@0.1.15(next@15.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      '@unpic/core': 0.1.0
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+    optionalDependencies:
+      next: 15.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
 
   '@vidstack/react@1.12.12(@types/react@19.0.1)(react@19.0.0)':
     dependencies:
@@ -1767,6 +1798,8 @@ snapshots:
   typescript@5.7.2: {}
 
   undici-types@6.19.8: {}
+
+  unpic@3.22.0: {}
 
   use-sync-external-store@1.4.0(react@19.0.0):
     dependencies:

@@ -31,7 +31,7 @@ const VideoRecommendation = async ({
             category={toTitleCase(result.document.tags[0])}
             views={result.document.views.toString()}
             uid={result.document.uid}
-            thumbnail_placeholder={`https://cdn1.gotdesiporn.com/images/placeholder/${result.document.uid}.jpg`}
+            thumbnail_placeholder={`https://cdn1.gotdesiporn.com/images/placeholders/${result.document.uid}-placeholder.jpg`}
           />
         ))}
     </>

@@ -5,7 +5,6 @@ import {
 } from "../types/types";
 
 export async function getVideo(page: number): Promise<Video[]> {
-  const startTime = Date.now();
   const res = await fetch(`${process.env.api_server}/api/video/page/${page}`, {
     next: { revalidate: 86400 },
   });
@@ -22,13 +21,10 @@ export async function getTags(): Promise<string[]> {
 }
 
 export async function getVideoByUID(uid: string): Promise<Video> {
-  const startTime = Date.now();
-
   const res = await fetch(`${process.env.api_server}/api/video/${uid}`, {
-    next: { revalidate: 86400 },
+    next: { revalidate: 3974400 },
   });
   const data: Video = await res.json();
-  console.log(`time taken for ${uid} is ${Date.now() - startTime}`);
   return data;
 }
 

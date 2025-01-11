@@ -1,6 +1,7 @@
+"use client";
 import React from "react";
 import Link from "next/link";
-import Img from "react-cool-img";
+import { Image, type ImageProps } from "@unpic/react";
 import { toSnakeCase } from "@/lib/utils";
 
 interface VideoCardProps {
@@ -26,26 +27,24 @@ const VideoCard: React.FC<VideoCardProps> = ({
       scroll={true}
       aria-label={`Watch video: ${title}`}
     >
-      <div className="grid grid-cols-12 gap-2 cursor-pointer group hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors p-2 rounded-lg">
+      <div className="grid grid-cols-12 gap-2 cursor-pointer group transition-colors p-2 rounded-lg">
         {/* Thumbnail */}
         <div className="aspect-video relative rounded-lg overflow-hidden col-span-5 md:col-span-4">
-          <Img
+          <Image
             src={thumbnail}
             alt={title}
-            placeholder={thumbnail_placeholder}
-            error="https://via.placeholder.com/640x360?text=Error+Loading+Image"
-            lazy
-            cache
-            debounce={500}
-            className="w-full h-full object-cover transition-transform group-hover:scale-105 shadow-lg blur-lg"
-            onLoad={(e: React.SyntheticEvent<HTMLImageElement>) => {
-              (e.target as HTMLImageElement).classList.remove("blur-lg");
-            }}
+            layout="constrained"
+            width={160}
+            height={90}
+            breakpoints={[160, 320]}
+            className="w-full h-full object-cover transition-transform group-hover:scale-105 shadow-lg"
+            background={thumbnail_placeholder}
+            priority={false}
           />
         </div>
 
         {/* Video Info */}
-        <div className="flex flex-col justify-between gap-1 col-span-7 md:col-span-8">
+        <div className="flex flex-col justify-start gap-1 col-span-7 md:col-span-8">
           {/* Category */}
           <h3 className="font-normal text-xs text-neutral-500 dark:text-neutral-400">
             {category}

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Image from "next/image";
+import { Image } from "@unpic/react";
 import Link from "next/link";
 import { toSnakeCase, toTitleCase } from "@/lib/utils";
 interface VideoCardProps {
@@ -27,18 +27,18 @@ const VideoCard = ({
           <Image
             src={thumbnail}
             alt={title}
-            fill
-            className="object-cover transition-transform group-hover:scale-105 shadow-2xl"
-            placeholder="blur"
-            blurDataURL={thumbnail_placeholder}
+            layout="constrained"
+            width={640}
+            height={360}
+            breakpoints={[320, 640, 960]}
+            className="w-full h-full object-cover transition-transform group-hover:scale-105 shadow-2xl"
+            background={thumbnail_placeholder}
             priority={false}
-            loading="lazy"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.src =
                 "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwKDAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9s=";
             }}
-            unoptimized
           />
         </div>
 
